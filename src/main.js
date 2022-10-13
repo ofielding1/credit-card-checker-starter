@@ -21,27 +21,27 @@ const mystery5 = [4, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3]
 
 // An array of all the arrays above
 const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, invalid3, invalid4, invalid5, mystery1, mystery2, mystery3, mystery4, mystery5]
-const unitTest = [true, true, true, true, true, false, false, false, false, false, false, false, true, false, false]
+const unitTest = [true, true, true, true, true, false, false, false, false, false, false, true,false, false, true]
 
 // Add your functions below:
 
-const validateCred=(cardNum)=>{
+const validateCred = (cardNum) => {
     //Luhn's Algorithm
     let sum = 0;
     let nDigits = cardNum.length;
     // Grabs every other digit
     let parity = (nDigits - 2) % 2; 
     
-    if(cardNum[0] > 6 || cardNum < 3){
+    if (cardNum[0] > 6 || cardNum < 3) {
         console.log(`Invalid Card Number`);
         return false;
     }
-    for (let i = nDigits-1; i >= 0; i--){
+    for (let i = nDigits-1; i >= 0; i--) {
         let digit = cardNum[i];
-        if(i % 2 === parity){
+        if (i % 2 === parity) {
             digit = digit * 2;
         }
-        if(digit > 9){
+        if (digit > 9) {
             digit = digit -  9;
         }
         sum = sum + digit;
@@ -51,13 +51,14 @@ const validateCred=(cardNum)=>{
 let test = validateCred(valid2);
 
 //Unit Test
-for(let i = 0; i < batch.length - 1; i++){
-    if(validateCred(batch[i]) === unitTest[i]){
-        console.log(`Test ${i+1}: PASS ${validateCred(batch[i])}`)
+for (let i = 0; i < batch.length - 1; i++) {
+    if (validateCred(batch[i]) === unitTest[i]) {
+        console.log(`Test ${i+1}: PASS`)
     }
     else {
-        console.log(`Test ${i+1}: Fail ${validateCred(batch[i])}`)
+        console.log(`Test ${i+1}: FAIL`)
     }
-   // console.log(`Return: ${validateCred(batch[i])}`);
 }
+
+
 
